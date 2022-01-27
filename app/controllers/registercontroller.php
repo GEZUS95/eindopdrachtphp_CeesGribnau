@@ -73,15 +73,8 @@ class registercontroller
     {
         var_dump($data);
         $hashedpass = password_hash($data['password'], PASSWORD_DEFAULT);
-        $newUser = new user($data['username'], $data['email']);
-        $newUser->setPassword($hashedpass);
-        if (is_null($data['phone'])) {
-            $tel = 0;
-        } else {
-            $tel = $data['phone'];
-        }
-        $newUser->setPhone($tel);
-
+        if (is_null($data['phone'])) {$tel = 0;} else {$tel = $data['phone'];}
+        $newUser = new user(0, $data['username'], $data['email'], $hashedpass, $tel,false);
         $this->service->createUser($newUser);
         $this->sesHelp->redirect2("Account successfully created", "/login", 1000000);
     }

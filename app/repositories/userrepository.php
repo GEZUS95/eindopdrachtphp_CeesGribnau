@@ -36,17 +36,19 @@ class userrepository extends repository
 
     function insertOne(user $user){
         try{
-        $stmt = $this->connection->prepare("INSERT INTO users (userName, email, password, phone) VALUES (:userName, :email, :password, :phone)");
+        $stmt = $this->connection->prepare("INSERT INTO users (userName, email, password, phone, admin) VALUES (:userName, :email, :password, :phone, :admin)");
 
         $un = $user->getUserName();
         $mail = $user->getEmail();
         $pas = $user->getPassword();
         $tel = $user->getPhone();
+        $admin = $user->isAdmin();
 
         $stmt->bindParam(':userName', $un);
         $stmt->bindParam(':email', $mail);
         $stmt->bindParam(':password', $pas);
         $stmt->bindParam(':phone', $tel);
+        $stmt->bindParam(':admin', $admin);
 
         $stmt->execute();
         } catch (PDOException $e){

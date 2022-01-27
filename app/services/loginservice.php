@@ -20,11 +20,8 @@ class loginservice
 
     public function getOneUser(string $email) {
             $obj = $this->userrepository->getOne($email);
-            $user = new user($obj->{'userName'}, $obj->{'email'});
-            $user->setId($obj->{'id'});
-            $user->setPassword($obj->{'password'});
-            $user->setPhone($obj->{'phone'});
-        return $user;
+            if ($obj->{'admin'}){$type = 'admin';} else {$type = 'user';}
+            return new user($obj->{'id'}, $obj->{'userName'}, $obj->{'email'}, $obj->{'password'}, $obj->{'phone'}, $type);
     }
 
     public function getOneCompany(string $email) {
