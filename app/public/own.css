@@ -1,0 +1,13 @@
+.wrapper{
+    width: 400px;
+    padding: 20px;
+    margin: auto;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+.btn{
+    margin-top: 10px;
+}
+.navitem-right{
+    float: right;
+}
