@@ -76,7 +76,7 @@ class registercontroller
         if (is_null($data['phone'])) {$tel = 0;} else {$tel = $data['phone'];}
         $newUser = new user(0, $data['username'], $data['email'], $hashedpass, $tel,false);
         $this->service->createUser($newUser);
-        $this->sesHelp->redirect2("Account successfully created", "/login", 1000000);
+        $this->sesHelp->redirect2("Account successfully created", "/login", 100);
     }
 
     public function index()

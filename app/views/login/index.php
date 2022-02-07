@@ -1,9 +1,9 @@
 <?php
 include __DIR__ . '/../header.php';
-?>
 
-    <h1>Loginpage</h1>
-<?php $this->sesHelp->message(); ?>
+
+echo '<h1>Loginpage</h1>';
+ $this->sesHelp->message(); ?>
     <div class="wrapper">
         <form method="post" action="">
         <div class="form-group">

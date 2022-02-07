@@ -42,8 +42,8 @@ class userrepository extends repository
         $mail = $user->getEmail();
         $pas = $user->getPassword();
         $tel = $user->getPhone();
-        $admin = $user->isAdmin();
-
+        if (!$user->isAdmin()) {$admin = 0;} else {$admin = $user->isAdmin();}
+var_dump($admin);
         $stmt->bindParam(':userName', $un);
         $stmt->bindParam(':email', $mail);
         $stmt->bindParam(':password', $pas);
