@@ -1,22 +1,18 @@
 <?php
-require __DIR__ . '/../repositories/userrepository.php';
-require __DIR__ . '/../repositories/companyrepository.php';
+
+namespace Services;
+
 
 class loginservice
 {
-    private userrepository $userrepository;
-    private companyrepository $companyrepository;
+    private userservice $userService;
+    private companyservice $companyService;
 
     public function __construct()
     {
-        $this->userrepository = new userrepository();
-        $this->companyrepository = new companyrepository();
+        $this->userService = new userservice();
+        $this->companyService = new companyservice();
     }
-
-
-//    public function getAllUsers() {
-//        return $this->userrepository->getAll();
-//    }
 
     public function getOneUser(string $email) {
             $obj = $this->userrepository->getOne($email);
@@ -33,15 +29,5 @@ class loginservice
             $company = new company($obj->{'name'}, $obj->{'email'}, $obj->{'password'}, $obj->{'phone'}, $description , $photos);
             $company->setId($obj->{'id'});
             return $company;
-    }
-
-    public function userExists($email)
-    {
-        if($this->userrepository->getOne($email) != false) { return true;}
-    }
-
-    public function companyExists($email)
-    {
-        if($this->companyrepository->getOne($email) != false) { return true;}
     }
 }

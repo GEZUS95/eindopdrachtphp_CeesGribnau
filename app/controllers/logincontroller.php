@@ -1,28 +1,40 @@
 <?php
+
+namespace Controllers;
+
+
+use Helpers\sessionHelper;
+use Services\CompanyService;
+use Services\loginservice;
+use Services\UserService;
+
 session_start();
-require __DIR__ . '/../services/loginservice.php';
-require __DIR__ . '/../helpers/session_helper.php';
+
 class logincontroller
 {
 
     private loginservice $loginservice;
     protected sessionHelper $sesHelp;
+    private UserService $userService;
+    private CompanyService $companyService;
 
     public function __construct()
     {
         $this->loginservice = new loginservice();
+        $this->userService = new UserService();
+        $this->companyService = new CompanyService();
         $this->sesHelp = new sessionHelper();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $new = array_map('htmlspecialchars', $_POST);
-            var_dump($_POST);
+//            var_dump($_POST);
             if (empty($new['email'] || $new['password'])) {
                 $this->sesHelp->redirect("email or password is empty","/login");
             }
             elseif(isset($new['submit'])) {
-                if ($this->loginservice->userExists($new['email'])) {
+                if ($this->userService->userExists($new['email'])) {
                     $this->loginUser($new['email'], $new['password']);
-                } elseif ($this->loginservice->companyExists($new['email'])) {
+                } elseif ($this->companyService->companyExists($new['email'])) {
                     $this->loginCompany($new['email'], $new['password']);
                 } else {
                     $this->sesHelp->redirect("User or Company does not exists", "/login");
@@ -38,17 +50,16 @@ class logincontroller
 
     public function loginUser(string $email, string $password): void
     {
-        $user = $this->loginservice->getOneUser($email);
+        $user = $this->userService->getOneUser($email);
         if (!empty($user)) {
-            if (password_verify($password, $user->getPassword())) {
-                if ($user->isAdmin()){$type = 'admin';} else {$type = 'user';}
+            if ($this->userService->checkPassword($password, $user->password)) {
                 $_SESSION['authenticated'] = true;
                 $_SESSION['auth_user'] = [
-                    'type' => $type,
-                    'id' => $user->getId(),
-                    'username' => $user->getUserName(),
-                    'email' => $user->getEmail(),
-                    'phone' => $user->getPhone()
+                    'type' => $user->role,
+                    'id' => $user->id,
+                    'username' => $user->name,
+                    'email' => $user->email,
+                    'phone' => $user->phone
                 ];
                 $this->sesHelp->redirect("Login Success!",'/');
             }
@@ -66,16 +77,16 @@ class logincontroller
 
     private function loginCompany(string $email, string $password)
     {
-        $company = $this->loginservice->getOneCompany($email);
+        $company = $this->companyService->getOneCompany($email);
         if (!empty($company)) {
-            if (password_verify($password, $company->getPassword())) {
+            if ($this->companyService->checkPassword($password, $company->password)) {
                 $_SESSION['authenticated'] = true;
                 $_SESSION['auth_user'] = [
-                    'type' => 'company',
-                    'id' => $company->getId(),
-                    'username' => $company->getName(),
-                    'email' => $company->getEmail(),
-                    'phone' => $company->getPhone()
+                    'type' => $company->role,
+                    'id' => $company->id,
+                    'username' => $company->name,
+                    'email' => $company->email,
+                    'phone' => $company->phone
                 ];
                 $this->sesHelp->redirect("Login Success!",'/');
             }

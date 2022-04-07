@@ -1,4 +1,5 @@
 <?php
+namespace Controllers;
 session_start();
 require __DIR__ . '/../helpers/session_helper.php';
 class HomeController

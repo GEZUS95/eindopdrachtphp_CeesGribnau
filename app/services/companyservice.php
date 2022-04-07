@@ -1,5 +1,10 @@
 <?php
 
+namespace Services;
+
+use Models\Company;
+use Repositories\CompanyRepository;
+
 class companyservice
 {
     private companyrepository $repository;
@@ -23,18 +28,6 @@ class companyservice
         $this->repository->getAll();
     }
 
-    public function getOne($email)
-    {
-        $obj = $this->repository->getOne($email);
-        $description = $obj->{'description'};
-        $photos = json_decode($obj->{'photos'}, true);
-        if ($photos == null) {$photos = array();}
-        if ($obj->{'description'} == null) {$description = "";}
-        $comp = new company($obj->{'name'}, $obj->{'email'}, $obj->{'password'}, $obj->{'phone'}, $description, $photos);
-        $comp->setId($obj->{'id'});
-        return $comp;
-    }
-
     public function insertOne(company $company)
     {
         $this->repository->insertOne($company);
@@ -44,5 +37,10 @@ class companyservice
     {
         $sphotos = json_encode($photos);
         $this->repository->updatePhotos($id, $sphotos);
+    }
+
+    public function getOneCompany(string $email)
+    {
+        return $this->repository->getOne($email);
     }
 }

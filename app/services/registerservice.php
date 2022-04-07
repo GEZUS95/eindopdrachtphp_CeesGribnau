@@ -1,26 +1,27 @@
 <?php
-require __DIR__ . '/../repositories/userrepository.php';
-require __DIR__ . '/../repositories/companyrepository.php';
+
+use Models\Company;
+use Models\User;
+use Services\companyservice;
+use Services\UserService;
+
 
 class registerservice {
 
-    private userrepository $repository;
+    private userService $userService;
+    private companyService $companyService;
 
     public function __construct()
     {
-        $this->repository = new userrepository();
+        $this->userService = new userService();
+        $this->companyService = new companyService();
     }
 
     public function createUser(user $user){
-        $this->repository->insertOne($user);
+        $this->userService->insertOne($user);
     }
 
-    public function userExists($email)
-    {
-        if($this->repository->getOne($email) != false) { return true;}
-    }
-
-    public function companyExists($email1)
-    {
+    public function createCompany(company $company){
+        $this->companyService->insertOne($company);
     }
 }
