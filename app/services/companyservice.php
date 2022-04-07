@@ -1,9 +1,7 @@
 <?php
 
-namespace Services;
-
-use Models\Company;
-use Repositories\CompanyRepository;
+require __DIR__ . '/../models/company.php';
+require __DIR__ . '/../repositories/companyrepository.php';
 
 class companyservice
 {
@@ -14,13 +12,16 @@ class companyservice
         $this->repository = new companyrepository();
     }
 
-    public function updateDescription($id, $description){
+    public function updateDescription($id, $description)
+    {
         $this->repository->updateDescription($id, $description);
     }
 
     public function companyExists($email)
     {
-        if($this->repository->getOne($email) != false) { return true;}
+        if ($this->repository->getOne($email) != false) {
+            return true;
+        }
     }
 
     public function getAll()

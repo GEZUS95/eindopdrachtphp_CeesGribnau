@@ -1,11 +1,8 @@
 <?php
 
-namespace Repositories;
-
-use Models\Review;
 
 require __DIR__ . '/repository.php';
-require __DIR__ . '/../models/user.php';
+require __DIR__ . '/../models/review.php';
 
 class ReviewRepository extends repository
 {

@@ -1,7 +1,5 @@
 <?php
 
-namespace Controllers;
-
 session_start();
 
 class profilecontroller

@@ -1,12 +1,11 @@
 <?php
 
-use Models\Company;
-use Models\User;
-use Services\companyservice;
-use Services\UserService;
+require __DIR__ . '/../models/company.php';
+require __DIR__ . '/../models/user.php';
+require __DIR__ . '/../services/companyservice.php';
+require __DIR__ . '/../services/userservice.php';
 
-
-class registerservice {
+class RegisterService {
 
     private userService $userService;
     private companyService $companyService;

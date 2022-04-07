@@ -1,25 +1,24 @@
 <?php
 
-namespace Controllers;
-
-use Helpers\sessionHelper;
-use Models\User;
-use registerservice;
-use Services\companyservice;
-use Services\UserService;
+require __DIR__ . '/../helpers/session_helper.php';
+require __DIR__ . '/../models/user.php';
+require __DIR__ . '/../models/company.php';
+require __DIR__ . '/../services/companyservice.php';
+require __DIR__ . '/../services/userservice.php';
+require __DIR__ . '/../services/RegisterService.php';
 
 session_start();
 
 class registercontroller
 {
     protected sessionHelper $sesHelp;
-    private registerservice $service;
+    private RegisterService $service;
     private companyservice $companyService;
     private UserService $userService;
 
     public function __construct()
     {
-        $this->service = new registerservice();
+        $this->service = new RegisterService();
         $this->companyService = new companyservice();
         $this->userService = new userservice();
         $this->sesHelp = new sessionHelper();
@@ -83,8 +82,8 @@ class registercontroller
         } else {
             $tel = $data['phone'];
         }
-        $newUser = new user(0, $data['username'], $data['email'], $hashedpass, $tel, false);
-        $this->service->createUser($newUser);
+
+        $this->service->createUser(new user($data['username'], 'user', $data['email'], $hashedpass, $tel));
         $this->sesHelp->redirect2("Account successfully created", "/login", 100);
     }
 
@@ -101,11 +100,8 @@ class registercontroller
     private function makeCompany($data)
     {
         $hashedpass = password_hash($data['password'], PASSWORD_DEFAULT);
-        $newCompany = new company($data['companyname'], $data['email'], $hashedpass, $data['phone'], '', array());
-        $newCompany->setPassword($hashedpass);
 
-
-        $this->companyService->insertOne($newCompany);
+        $this->service->createCompany(new company($data['companyname'], 'company', $data['email'], $hashedpass, $data['phone'], '', array()));
         $this->sesHelp->redirect2("Account successfully created", "/login", 100000);
     }
 

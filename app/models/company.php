@@ -1,5 +1,4 @@
 <?php
-namespace Models;
 
 class Company extends User {
 

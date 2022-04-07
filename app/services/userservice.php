@@ -1,10 +1,7 @@
 <?php
 
-namespace Services;
-
-use Models\User;
-use PDOException;
-use Repositories\UserRepository;
+require __DIR__ . '/../models/user.php';
+require __DIR__ . '/../repositories/userrepository.php';
 
 class UserService
 {
@@ -20,31 +17,9 @@ class UserService
         return $this->repository->getOne($email);
     }
 
-    public function checkPassword($email, $pass)
-    {
-        try {
-            // get the user from db
-            $user = $this->repository->getOne($email);
-
-            // verify if the password matches the hash in the database
-            $result = password_verify($pass, $user->password);
-
-            if (!$result)
-                return false;
-
-            // do not pass the password hash to the caller
-            $user->password = "";
-
-            return $user;
-        } catch (PDOException $e) {
-            echo $e;
-        }
-        return false;
-    }
-
     public function userExists($email)
     {
-        if($this->repository->getOne($email) != false) return true;
+        if ($this->repository->getOne($email) != false) return true;
     }
 
     public function insertOne(User $user)

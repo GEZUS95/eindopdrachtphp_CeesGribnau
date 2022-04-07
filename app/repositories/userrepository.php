@@ -1,9 +1,5 @@
 <?php
 
-namespace Repositories;
-
-use Models\User;
-
 require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/user.php';
 

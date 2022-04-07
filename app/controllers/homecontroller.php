@@ -1,8 +1,10 @@
 <?php
-namespace Controllers;
+
+require '../helpers/session_helper.php';
+
 session_start();
-require __DIR__ . '/../helpers/session_helper.php';
-class HomeController
+
+class homecontroller
 {
     protected sessionHelper $sesHelp;
 
