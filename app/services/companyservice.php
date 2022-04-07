@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../models/company.php';
+//require __DIR__ . '/../models/company.php';
 require __DIR__ . '/../repositories/companyrepository.php';
 
 class companyservice

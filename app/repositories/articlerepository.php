@@ -6,7 +6,7 @@ class ArticleRepository extends Repository {
 
     function getAll() {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM article");
+            $stmt = $this->connection->prepare("SELECT * FROM review");
             $stmt->execute();
 
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Article');

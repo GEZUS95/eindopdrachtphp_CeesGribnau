@@ -1,7 +1,5 @@
 <?php
 
-namespace Helpers;
-
 class sessionHelper
 {
 

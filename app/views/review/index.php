@@ -2,7 +2,9 @@
 
 include __DIR__ . '/../header.php';
 
-echo "<h1>Articles!</h1>";
+echo "<h1>Reviews!</h1>";
+
+echo "<a href='/review/create' class='btn btn-primary'>Place a review</a>";
 
 foreach ($model as $article) {
     echo "<h2>$article->title</h2>";

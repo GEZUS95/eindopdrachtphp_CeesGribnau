@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `article`
+-- Table structure for table `review`
 --
 
 CREATE TABLE `article` (
@@ -36,7 +36,7 @@ CREATE TABLE `article` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `article`
+-- Dumping data for table `review`
 --
 
 INSERT INTO `article` (`id`, `title`, `content`, `author`, `posted_at`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `article` (`id`, `title`, `content`, `author`, `posted_at`) VALUES
 --
 
 --
--- Indexes for table `article`
+-- Indexes for table `review`
 --
 ALTER TABLE `article`
   ADD PRIMARY KEY (`id`);
@@ -57,7 +57,7 @@ ALTER TABLE `article`
 --
 
 --
--- AUTO_INCREMENT for table `article`
+-- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `article`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

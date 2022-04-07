@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `article`
+-- Table structure for table `review`
 --
 
--- CREATE TABLE `article` (
+-- CREATE TABLE `review` (
 --   `id` int(11) NOT NULL,
 --   `title` varchar(255) NOT NULL,
 --   `content` varchar(10000) NOT NULL,
@@ -36,10 +36,10 @@ SET time_zone = "+00:00";
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `article`
+-- Dumping data for table `review`
 --
 
--- INSERT INTO `article` (`id`, `title`, `content`, `author`, `posted_at`) VALUES
+-- INSERT INTO `review` (`id`, `title`, `content`, `author`, `posted_at`) VALUES
 -- (1, 'test title', 'test content', 'test author', '2021-11-30 13:09:55');
 
 -- --------------------------------------------------------
@@ -51,6 +51,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `companys` (
   `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `role` VARCHAR(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone` varchar(15) NOT NULL,
@@ -63,8 +64,8 @@ CREATE TABLE `companys` (
 -- Dumping data for table `companys`
 --
 
-INSERT INTO `companys` (`id`, `name`, `email`, `password`, `phone`, `description`, `photos`, `created_at`) VALUES
-(1, 'TestCompany', 'test@company.com', '$2y$10$FgxFzXbr2hezUm3MBxOrsOVkfT7xUAzxikSRvZzbO8e0Yz65nsOK2', '31628527787', NULL, NULL, '2022-01-22 17:32:52');
+INSERT INTO `companys` (`id`, `name`, `role`, `email`, `password`, `phone`, `description`, `photos`, `created_at`) VALUES
+(1, 'TestCompany', 'company', 'test@company.com', '$2y$10$FgxFzXbr2hezUm3MBxOrsOVkfT7xUAzxikSRvZzbO8e0Yz65nsOK2', '31628527787', NULL, NULL, '2022-01-22 17:32:52');
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,8 @@ CREATE TABLE `reviews` (
 
 CREATE TABLE `users` (
   `id` int(10) NOT NULL,
-  `userName` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `role` VARCHAR(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone` varchar(15) DEFAULT NULL,
@@ -99,17 +101,17 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `userName`, `email`, `password`, `phone`, `admin`, `created_at`) VALUES
-(1, 'test', 'test@email.com', '$2y$10$GiNMhQhyPL86gsFA2yZCNu8oDHfBcQOfmfmEP5fKeADo0V.tDzH/W', '628527787', 0, '2022-01-22 12:05:31');
+INSERT INTO `users` (`id`, `name`, `role`,`email`, `password`, `phone`, `admin`, `created_at`) VALUES
+(1, 'test', 'user', 'test@email.com', '$2y$10$GiNMhQhyPL86gsFA2yZCNu8oDHfBcQOfmfmEP5fKeADo0V.tDzH/W', '628527787', 0, '2022-01-22 12:05:31');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `article`
+-- Indexes for table `review`
 --
--- ALTER TABLE `article`
+-- ALTER TABLE `review`
 --   ADD PRIMARY KEY (`id`);
 
 --
@@ -136,9 +138,9 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `article`
+-- AUTO_INCREMENT for table `review`
 --
--- ALTER TABLE `article`
+-- ALTER TABLE `review`
 --   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --

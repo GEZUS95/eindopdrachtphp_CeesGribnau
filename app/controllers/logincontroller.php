@@ -1,8 +1,8 @@
 <?php
 
 require __DIR__ . '/../helpers/session_helper.php';
-require __DIR__ . '/../services/companyservice.php';
 require __DIR__ . '/../services/userservice.php';
+require __DIR__ . '/../services/companyservice.php';
 
 session_start();
 
@@ -73,7 +73,7 @@ class logincontroller
                 $_SESSION['auth_user'] = [
                     'type' => $user->role,
                     'id' => $user->id,
-                    'username' => $user->name,
+                    'name' => $user->name,
                     'email' => $user->email,
                     'phone' => $user->phone
                 ];

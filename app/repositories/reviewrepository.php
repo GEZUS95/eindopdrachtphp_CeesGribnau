@@ -1,10 +1,9 @@
 <?php
 
-
 require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/review.php';
 
-class ReviewRepository extends repository
+class reviewrepository extends repository
 {
     function getAll()
     {

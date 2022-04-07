@@ -1,8 +1,8 @@
 <?php
 
-require '../helpers/session_helper.php';
-
 session_start();
+
+require '../helpers/session_helper.php';
 
 class homecontroller
 {

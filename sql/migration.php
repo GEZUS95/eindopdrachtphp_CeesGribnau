@@ -5,7 +5,8 @@ class migration extends Repository
 {
     private $sqluserstable = "CREATE TABLE users (
     id int(9) NOT NULL AUTO_INCREMENT,
-    userName VARCHAR(30), 
+    name VARCHAR(30) NOT NULL, 
+    role VARCHAR(30) NOT NULL, 
     email VARCHAR(100), 
     password VARCHAR(255), 
     phone int(13),
@@ -26,6 +27,7 @@ class migration extends Repository
     private $sqlcompanystable = "CREATE TABLE companys (
   id int(10) NOT NULL AUTO_INCREMENT,
   name varchar(50) NOT NULL,
+  role VARCHAR(30) NOT NULL, 
   email varchar(50) NOT NULL,
   password varchar(255) NOT NULL,
   phone int(13) NOT NULL,
