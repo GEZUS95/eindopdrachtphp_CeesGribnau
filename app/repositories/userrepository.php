@@ -1,8 +1,13 @@
 <?php
+
+namespace Repositories;
+
+use Models\User;
+
 require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/user.php';
 
-class userrepository extends repository
+class UserRepository extends repository
 {
     function getAll()
     {
@@ -11,9 +16,8 @@ class userrepository extends repository
             $stmt->execute();
 
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'user');
-            $articles = $stmt->fetchAll();
 
-            return $articles;
+            return $stmt->fetchAll();
 
         } catch (PDOException $e) {
             echo $e;
@@ -36,19 +40,13 @@ class userrepository extends repository
 
     function insertOne(user $user){
         try{
-        $stmt = $this->connection->prepare("INSERT INTO users (userName, email, password, phone, admin) VALUES (:userName, :email, :password, :phone, :admin)");
+        $stmt = $this->connection->prepare("INSERT INTO users (userName, role, email, password, phone) VALUES (:userName, :role ,:email, :password, :phone)");
 
-        $un = $user->getUserName();
-        $mail = $user->getEmail();
-        $pas = $user->getPassword();
-        $tel = $user->getPhone();
-        if (!$user->isAdmin()) {$admin = 0;} else {$admin = $user->isAdmin();}
-var_dump($admin);
-        $stmt->bindParam(':userName', $un);
-        $stmt->bindParam(':email', $mail);
-        $stmt->bindParam(':password', $pas);
-        $stmt->bindParam(':phone', $tel);
-        $stmt->bindParam(':admin', $admin);
+        $stmt->bindParam(':userName', $user->name);
+        $stmt->bindParam(':email', $user->email);
+        $stmt->bindParam(':password', $user->password);
+        $stmt->bindParam(':phone', $user->phone);
+        $stmt->bindParam(':role', $user->role);
 
         $stmt->execute();
         } catch (PDOException $e){

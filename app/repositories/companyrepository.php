@@ -1,7 +1,11 @@
 <?php
+namespace Repositories;
+
+use Models\Company;
+
 require __DIR__ . '/../models/company.php';
 
-class companyrepository extends repository
+class CompanyRepository extends repository
 {
     public function getAll()
     {
@@ -37,15 +41,10 @@ class companyrepository extends repository
         try{
             $stmt = $this->connection->prepare("INSERT INTO companys (name, email, password, phone, description) VALUES (:cname, :email, :password, :phone, null)");
 
-            $un = $company->getName();
-            $mail = $company->getEmail();
-            $pas = $company->getPassword();
-            $tel = $company->getPhone();
-
-            $stmt->bindParam(':cname', $un);
-            $stmt->bindParam(':email', $mail);
-            $stmt->bindParam(':password', $pas);
-            $stmt->bindParam(':phone', $tel);
+            $stmt->bindParam(':cname', $company->name);
+            $stmt->bindParam(':email', $company->email);
+            $stmt->bindParam(':password', $company->password);
+            $stmt->bindParam(':phone', $company->phone);
 
             $stmt->execute();
         } catch (PDOException $e){

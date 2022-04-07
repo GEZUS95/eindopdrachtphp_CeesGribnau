@@ -1,5 +1,7 @@
 <?php
 
+namespace Repositories;
+
 class Repository
 {
 
