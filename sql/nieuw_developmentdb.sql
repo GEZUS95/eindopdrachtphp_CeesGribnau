@@ -65,7 +65,7 @@ CREATE TABLE `companys` (
 --
 
 INSERT INTO `companys` (`id`, `name`, `role`, `email`, `password`, `phone`, `description`, `photos`, `created_at`) VALUES
-(1, 'TestCompany', 'company', 'test@company.com', '$2y$10$FgxFzXbr2hezUm3MBxOrsOVkfT7xUAzxikSRvZzbO8e0Yz65nsOK2', '31628527787', NULL, NULL, '2022-01-22 17:32:52');
+(1, 'TestCompany', 'company', 'test@company.com', '$2y$10$FgxFzXbr2hezUm3MBxOrsOVkfT7xUAzxikSRvZzbO8e0Yz65nsOK2', '31628527787', '', NULL, '2022-01-22 17:32:52');
 
 -- --------------------------------------------------------
 
@@ -74,10 +74,13 @@ INSERT INTO `companys` (`id`, `name`, `role`, `email`, `password`, `phone`, `des
 --
 
 CREATE TABLE `reviews` (
-  `company_id` int(10) NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `stars` int(10) NOT NULL,
-  `description` text DEFAULT NULL
+  `id` int(10) NOT NULL,
+  `companyId` int(10) NOT NULL,
+  `userId` int(10) NOT NULL,
+  `title` text NOT NULL,
+  `description` longtext NOT NULL,
+  `rating` int(10) NOT NULL,
+  `reaction` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -124,8 +127,9 @@ ALTER TABLE `companys`
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`company_id`,`user_id`),
-  ADD KEY `user_id` (`user_id`);
+    ADD PRIMARY KEY (`id`);
+#     ADD FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
+#     ADD FOREIGN KEY (`companyId`) REFERENCES `companys` (`id`);
 
 --
 -- Indexes for table `users`
@@ -140,8 +144,8 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for table `review`
 --
--- ALTER TABLE `review`
---   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `reviews`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `companys`
@@ -159,12 +163,6 @@ ALTER TABLE `users`
 -- Constraints for dumped tables
 --
 
---
--- Constraints for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `companys` (`id`),
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

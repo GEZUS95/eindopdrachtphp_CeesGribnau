@@ -25,7 +25,7 @@ class companyservice
 
     public function getAll()
     {
-        $this->repository->getAll();
+        return $this->repository->getAll();
     }
 
     public function insertOne(company $company)
@@ -42,5 +42,10 @@ class companyservice
     public function getOneCompany(string $email)
     {
         return $this->repository->getOne($email);
+    }
+
+    public function getOneById(int $id)
+    {
+        return $this->repository->getOneById($id);
     }
 }

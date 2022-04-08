@@ -22,7 +22,7 @@ class profilecontroller
         }
     }
 
-    public function change() {
-        require __DIR__ . '/../views/profile/change.php';
+    public function changeUser() {
+        require __DIR__ . '/../views/profile/changeUser.php';
     }
 }

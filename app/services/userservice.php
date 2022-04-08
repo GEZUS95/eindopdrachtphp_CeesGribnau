@@ -15,6 +15,10 @@ class UserService
     {
         return $this->repository->getOne($email);
     }
+    public function getOneById(int $id)
+    {
+        return $this->repository->getOneById($id);
+    }
 
     public function userExists($email)
     {

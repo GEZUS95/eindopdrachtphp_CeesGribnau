@@ -36,7 +36,7 @@ class reviewrepository extends repository
     function insertOne(review $review)
     {
         try {
-            $stmt = $this->connection->prepare("INSERT INTO review (companyId, userId, title, description, rating, reaction) VALUES (:companyId, :userId, :title, :description, :rating, :reaction)");
+            $stmt = $this->connection->prepare("INSERT INTO reviews (companyId, userId, title, description, rating, reaction) VALUES (:companyId, :userId, :title, :description, :rating, :reaction)");
 
             $stmt->bindParam(':companyId', $review->companyId);
             $stmt->bindParam(':userId', $review->userId);

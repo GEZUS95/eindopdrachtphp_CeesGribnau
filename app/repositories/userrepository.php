@@ -47,5 +47,20 @@ class UserRepository extends repository
         }
     }
 
+    public function getOneById(int $id)
+    {
+        try {
+            $stmt = $this->connection->prepare("SELECT * FROM users WHERE id = :id LIMIT 1");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            return $stmt->fetch();
+
+        } catch (PDOException $e){
+            echo $e;
+        }
+    }
+
 
 }

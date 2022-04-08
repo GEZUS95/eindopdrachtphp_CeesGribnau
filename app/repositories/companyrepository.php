@@ -9,9 +9,7 @@ class CompanyRepository extends repository
             $stmt->execute();
 
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'company');
-            $articles = $stmt->fetchAll();
-
-            return $articles;
+            return $stmt->fetchAll();
 
         } catch (PDOException $e) {
             echo $e;
@@ -68,6 +66,21 @@ class CompanyRepository extends repository
             $stmt->bindParam(':id', $id);
 
             $stmt->execute();
+        } catch (PDOException $e){
+            echo $e;
+        }
+    }
+
+    public function getOneById(int $id)
+    {
+        try {
+            $stmt = $this->connection->prepare("SELECT * FROM companys WHERE id = :id LIMIT 1");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            return $stmt->fetch();
+
         } catch (PDOException $e){
             echo $e;
         }
