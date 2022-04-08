@@ -82,7 +82,7 @@ class profilecontroller
                         exit;
                     }
                 } else {
-                    $olduser = $this->userService->getOneById($serialized['id']);
+                    $olduser = $this->companyService->getOneById($serialized['id']);
                     $updatedCompany->password = $olduser->password;
                 }
                 $this->companyService->updateOne($updatedCompany);

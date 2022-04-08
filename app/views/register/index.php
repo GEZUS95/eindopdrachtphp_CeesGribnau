@@ -30,6 +30,14 @@ include __DIR__ . '/../header.php';
                 <label>Phone number: </label>
                 <input type="tel" name="phone" class="form-control"/>
             </div>
+            <?php if ($_SESSION['auth_user']['type'] == 'admin') echo "
+            <div class='form-group'>
+                <label>Role: </label>
+                <select name='role' class='form-control'>
+                    <option value='user'>user</option>
+                    <option value='admin'>admin</option>
+                </select>
+            </div> " ?>
             <div class="form-group">
                 <button type="submit" name="user-btn-submit" class="btn btn-primary btn-lg">Register</button>
             </div>

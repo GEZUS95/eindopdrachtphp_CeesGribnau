@@ -23,7 +23,6 @@ class registercontroller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $seralisedPOST = array_map('htmlspecialchars', $_POST);
-//            var_dump($seralisedPOST);
             if (isset($seralisedPOST['user-btn-submit'])) {
                 if ($this->confirmEmail($seralisedPOST['email'], $seralisedPOST['email-conf'])) {
                     if ($this->confirmPasswords($seralisedPOST['password'], $seralisedPOST['password-conf'])) {

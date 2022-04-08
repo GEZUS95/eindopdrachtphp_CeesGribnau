@@ -33,13 +33,13 @@ class admincontroller
 
     public function users()
     {
-        $model = $this->userService->getAll();
+        $users = $this->userService->getAll();
         require __DIR__ . '/../views/admin/users.php';
     }
 
     public function companys()
     {
-        $model = $this->companyService->getAll();
+        $companys = $this->companyService->getAll();
         require __DIR__ . '/../views/admin/companys.php';
     }
 
@@ -47,5 +47,17 @@ class admincontroller
     {
         $model = $this->reviewService->getAll();
         require __DIR__ . '/../views/admin/reviews.php';
+    }
+
+    public function changeUser()
+    {
+        $user = $this->userService->getOneById($_GET['id']);
+        require __DIR__ .  '/../views/admin/changeuser.php';
+    }
+
+    public function changeCompany()
+    {
+        $company = $this->companyService->getOneById($_GET['id']);
+        require __DIR__ .  '/../views/admin/changecompany.php';
     }
 }
