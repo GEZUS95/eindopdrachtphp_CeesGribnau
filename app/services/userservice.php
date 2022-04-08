@@ -30,4 +30,8 @@ class UserService
         $this->repository->insertOne($user);
     }
 
+    public function updateOne(user $user){
+        $this->repository->updateOne($user);
+    }
+
 }

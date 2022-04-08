@@ -33,7 +33,7 @@ class UserRepository extends repository
 
     function insertOne(user $user){
         try{
-        $stmt = $this->connection->prepare("INSERT INTO users (userName, role, email, password, phone) VALUES (:userName, :role ,:email, :password, :phone)");
+        $stmt = $this->connection->prepare("INSERT INTO users (name, role, email, password, phone) VALUES (:userName, :role ,:email, :password, :phone)");
 
         $stmt->bindParam(':userName', $user->name);
         $stmt->bindParam(':email', $user->email);
@@ -62,5 +62,21 @@ class UserRepository extends repository
         }
     }
 
+    function updateOne(user $user){
+        try{
+            $stmt = $this->connection->prepare("UPDATE users SET name =:name, email = :email, password = :password, phone = :phone WHERE id = :id");
+
+            $stmt->bindParam(':name', $user->name);
+            $stmt->bindParam(':email', $user->email);
+            $stmt->bindParam(':password', $user->password);
+            $stmt->bindParam(':phone', $user->phone);
+            $stmt->bindParam(':id', $user->id);
+
+
+            $stmt->execute();
+        } catch (PDOException $e){
+            echo $e;
+        }
+    }
 
 }

@@ -8,7 +8,7 @@ include __DIR__ . '/../header.php';
         <form method="post" action="">
             <div class="form-group">
                 <label>Username: </label>
-                <input type="text" name="username" class="form-control" required/>
+                <input type="text" name="name" class="form-control" required/>
             </div>
             <div class="form-group">
                 <label>E-Mail: </label>

@@ -16,6 +16,12 @@ class companyservice
         $this->repository->updateDescription($id, $description);
     }
 
+    public function updatePhotos($id, array $photos)
+    {
+        $sphotos = json_encode($photos);
+        $this->repository->updatePhotos($id, $sphotos);
+    }
+
     public function companyExists($email)
     {
         if ($this->repository->getOne($email) != false) {
@@ -33,12 +39,6 @@ class companyservice
         $this->repository->insertOne($company);
     }
 
-    public function updatePhotos($id, array $photos)
-    {
-        $sphotos = json_encode($photos);
-        $this->repository->updatePhotos($id, $sphotos);
-    }
-
     public function getOneCompany(string $email)
     {
         return $this->repository->getOne($email);
@@ -47,5 +47,9 @@ class companyservice
     public function getOneById(int $id)
     {
         return $this->repository->getOneById($id);
+    }
+
+    function updateOne(company $company){
+        $this->repository->updateOne($company);
     }
 }

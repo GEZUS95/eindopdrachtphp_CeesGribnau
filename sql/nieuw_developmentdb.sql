@@ -66,6 +66,8 @@ CREATE TABLE `companys` (
 
 INSERT INTO `companys` (`id`, `name`, `role`, `email`, `password`, `phone`, `description`, `photos`, `created_at`) VALUES
 (1, 'TestCompany', 'company', 'test@company.com', '$2y$10$FgxFzXbr2hezUm3MBxOrsOVkfT7xUAzxikSRvZzbO8e0Yz65nsOK2', '31628527787', '', NULL, '2022-01-22 17:32:52');
+INSERT INTO `companys` (`id`, `name`, `role`, `email`, `password`, `phone`, `description`, `photos`, `created_at`) VALUES
+(2, 'Inholland', 'company', 'info@inholland.nl', '$2y$10$FgxFzXbr2hezUm3MBxOrsOVkfT7xUAzxikSRvZzbO8e0Yz65nsOK2', '31', 'Wat een school', NULL, '2022-01-22 17:32:52');
 
 -- --------------------------------------------------------
 
@@ -96,7 +98,6 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone` varchar(15) DEFAULT NULL,
-  `admin` tinyint(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

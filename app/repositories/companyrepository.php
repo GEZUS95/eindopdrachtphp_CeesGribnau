@@ -86,4 +86,21 @@ class CompanyRepository extends repository
         }
     }
 
+    function updateOne(company $company){
+        try{
+            $stmt = $this->connection->prepare("UPDATE companys SET name =:name, email = :email, password = :password, phone = :phone, description = :desc WHERE id = :id");
+
+            $stmt->bindParam(':name', $company->name);
+            $stmt->bindParam(':email', $company->email);
+            $stmt->bindParam(':password', $company->password);
+            $stmt->bindParam(':phone', $company->phone);
+            $stmt->bindParam(':desc', $company->description);
+            $stmt->bindParam(':id', $company->id);
+
+            $stmt->execute();
+        } catch (PDOException $e){
+            echo $e;
+        }
+    }
+
 }

@@ -65,7 +65,7 @@ class ReviewController
                     $review->reaction = "";
                 var_dump($review);
                 $this->reviewService->insertOne($review);
-                $this->sessionHelper->redirect2('', '/review', 100000);
+                $this->sessionHelper->redirect('', '/review');
             }
         }
     }

@@ -80,6 +80,10 @@ class logincontroller
                     'email' => $user->email,
                     'phone' => $user->phone
                 ];
+                if ($user->role === 'company'){
+                    $_SESSION['auth_user']['description'] = $user->description;
+                    $_SESSION['auth_user']['logo'] = $user->logo;
+                    }
                 $this->sesHelp->redirect("Login Success!", '/');
             }
         } else {

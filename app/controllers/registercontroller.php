@@ -83,9 +83,15 @@ class registercontroller
         } else {
             $tel = $data['phone'];
         }
+        $user = new User();
+            $user->name = $data['name'];
+            $user->role = 'user';
+            $user->email = $data['email'];
+            $user->password = $hashedpass;
+            $user->phone = $tel;
 
-        $this->service->createUser(new user($data['username'], 'user', $data['email'], $hashedpass, $tel));
-        $this->sesHelp->redirect2("Account successfully created", "/login", 100);
+        $this->service->createUser($user);
+        $this->sesHelp->redirect2("Account successfully created", "/login", 10000000);
     }
 
     public function index()
@@ -102,7 +108,16 @@ class registercontroller
     {
         $hashedpass = password_hash($data['password'], PASSWORD_DEFAULT);
 
-        $this->service->createCompany(new company($data['companyname'], 'company', $data['email'], $hashedpass, $data['phone'], '', array()));
+        $comp = new Company();
+        $comp->name = $data['companyname'];
+        $comp->role = 'company';
+        $comp->email = $data['email'];
+        $comp->password = $hashedpass;
+        $comp->phone = $data['phone'];
+        $comp->description = '';
+
+
+        $this->service->createCompany($comp);
         $this->sesHelp->redirect2("Account successfully created", "/login", 100000);
     }
 
