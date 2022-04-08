@@ -25,7 +25,6 @@ class ReviewController
     public function index()
     {
         $model = $this->reviewService->getAll();
-
         require __DIR__ . '/../views/review/index.php';
     }
 
@@ -34,7 +33,6 @@ class ReviewController
         $review = $this->reviewService->getOne($_GET['id']);
         $user = $this->userService->getOneById($review->userId);
         $company = $this->companyService->getOneById($review->companyId);
-
         require __DIR__ . '/../views/review/single.php';
     }
 
@@ -67,7 +65,6 @@ class ReviewController
 
     public function react()
     {
-
         $serialized = array_map('htmlspecialchars', $_POST);
         if (isset($serialized['react-btn-submit'])) {
             $this->reviewService->addReaction($_GET['id'], $serialized['reaction']);
@@ -80,7 +77,6 @@ class ReviewController
         if (!$_SESSION['authenticated'] && $_SESSION['auth_user']['type'] != 'admin') {
             $this->sessionHelper->redirect('You need to be an admin for this action','/'); exit();
         }
-
         $this->reviewService->deleteOne($_GET['id']);
     }
 

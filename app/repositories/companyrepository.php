@@ -19,22 +19,24 @@ class CompanyRepository extends repository
         }
     }
 
-    public function getOne(string $email) {
+    public function getOne(string $email)
+    {
         try {
             $stmt = $this->connection->prepare("SELECT * FROM companys WHERE email = :email LIMIT 1");
             $stmt->bindParam(':email', $email);
             $stmt->execute();
 
-            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'company');
             return $stmt->fetch();
 
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             echo $e;
         }
     }
 
-    public function insertOne(company $company){
-        try{
+    public function insertOne(company $company)
+    {
+        try {
             $stmt = $this->connection->prepare("INSERT INTO companys (name, email, password, phone, description) VALUES (:cname, :email, :password, :phone, null)");
 
             $stmt->bindParam(':cname', $company->name);
@@ -43,25 +45,13 @@ class CompanyRepository extends repository
             $stmt->bindParam(':phone', $company->phone);
 
             $stmt->execute();
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             echo $e;
         }
     }
 
-//    public function updateDescription($id, $description){
-//        try {
-//            $stmt = $this->connection->prepare("UPDATE companys SET description=:description WHERE id=:id");
-//
-//            $stmt->bindParam(':description', $description);
-//            $stmt->bindParam(':id', $id);
-//
-//            $stmt->execute();
-//        } catch (PDOException $e){
-//            echo $e;
-//        }
-//    }
-
-    public function updatePhotos($id, $photos)  {
+    public function updatePhotos($id, $photos)
+    {
         try {
             $stmt = $this->connection->prepare("UPDATE companys SET photos=:photos WHERE id=:id");
 
@@ -69,7 +59,7 @@ class CompanyRepository extends repository
             $stmt->bindParam(':id', $id);
 
             $stmt->execute();
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             echo $e;
         }
     }
@@ -81,16 +71,17 @@ class CompanyRepository extends repository
             $stmt->bindParam(':id', $id);
             $stmt->execute();
 
-            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'company');
             return $stmt->fetch();
 
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             echo $e;
         }
     }
 
-    function updateOne(company $company){
-        try{
+    function updateOne(company $company)
+    {
+        try {
             $stmt = $this->connection->prepare("UPDATE companys SET name =:name, email = :email, password = :password, phone = :phone, description = :desc WHERE id = :id");
 
             $stmt->bindParam(':name', $company->name);
@@ -101,7 +92,7 @@ class CompanyRepository extends repository
             $stmt->bindParam(':id', $company->id);
 
             $stmt->execute();
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             echo $e;
         }
     }

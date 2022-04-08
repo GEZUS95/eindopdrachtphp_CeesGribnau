@@ -37,6 +37,7 @@ class logincontroller
 
     public function index()
     {
+        if ($_SESSION['authenticated']) $this->sesHelp->redirect("You are already loged in", "/");
         require __DIR__ . '/../views/login/index.php';
     }
 

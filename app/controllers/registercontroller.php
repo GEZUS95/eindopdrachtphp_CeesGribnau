@@ -72,7 +72,6 @@ class registercontroller
 
     private function makeUser($data)
     {
-        var_dump($data);
         $hashedpass = password_hash($data['password'], PASSWORD_DEFAULT);
         if (is_null($data['phone'])) {
             $tel = 0;
@@ -114,7 +113,7 @@ class registercontroller
 
 
         $this->service->createCompany($comp);
-        $this->sesHelp->redirect2("Account successfully created", "/login", 100000);
+        $this->sesHelp->redirect("Account successfully created", "/login");
     }
 
 }
