@@ -1,5 +1,6 @@
 <?php
 
+
 class Company extends User {
 
     public string $description;

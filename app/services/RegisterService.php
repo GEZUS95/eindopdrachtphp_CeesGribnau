@@ -1,10 +1,5 @@
 <?php
 
-require __DIR__ . '/../models/company.php';
-require __DIR__ . '/../models/user.php';
-require __DIR__ . '/../services/companyservice.php';
-require __DIR__ . '/../services/userservice.php';
-
 class RegisterService {
 
     private userService $userService;

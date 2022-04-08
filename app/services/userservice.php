@@ -1,6 +1,5 @@
 <?php
 
-require __DIR__ . '/../models/user.php';
 require __DIR__ . '/../repositories/userrepository.php';
 
 class UserService

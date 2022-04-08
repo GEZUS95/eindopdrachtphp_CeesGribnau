@@ -8,7 +8,7 @@ class CompanyRepository extends repository
             $stmt = $this->connection->prepare("SELECT * FROM companys");
             $stmt->execute();
 
-            $stmt->setFetchMode(PDO::FETCH_CLASS, 'user');
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'company');
             $articles = $stmt->fetchAll();
 
             return $articles;
