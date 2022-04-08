@@ -2,16 +2,17 @@
 
 include __DIR__ . '/../header.php';
 
-echo "<h1>$review->title</h1>";
+echo "<div class='card'> ";
+echo "<h1 class='card-header'>$review->title</h1>";
 
 
-echo "<div> ";
+echo "<div class='card-body'> ";
 if (isset($company->logo)) {
     echo "<img  src='$company->logo'>";
 }
-echo "<p><i>$review->description</i><p>";
-echo "<p>$review->rating<p>";
-echo "$user->name wrote to $company->name";
+echo "<p>$review->description<p>";
+echo "<p>$review->rating Stars<p>";
+echo "<i>$user->name</i> reviewed <i>$company->name</i>";
 echo "</div> <hr>";
 
 if (($_SESSION['auth_user']['type'] == 'company') && ($_SESSION['auth_user']['id'] == $company->id))
