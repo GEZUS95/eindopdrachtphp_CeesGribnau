@@ -27,7 +27,13 @@
         <li class="nav-item">
           <a class="nav-link" href="/home/about">About</a>
         </li>
-        <?php if($_SESSION['authenticated']): ?>
+        <?php if($_SESSION['authenticated'] == true): ?>
+            <?php
+            if ($_SESSION['auth_user']['type'] == 'admin'):?>
+                <li class="nav-item navitem-right">
+                    <a class="nav-link" href="/admin">Admin</a>
+                </li>
+            <?php endif;?>
             <li class="nav-item navitem-right">
                 <a class="nav-link" href="/profile">Profile</a>
             </li>

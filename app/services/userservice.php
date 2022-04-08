@@ -34,4 +34,9 @@ class UserService
         $this->repository->updateOne($user);
     }
 
+    public function getAll()
+    {
+        return $this->repository->getAll();
+    }
+
 }

@@ -91,7 +91,7 @@ class registercontroller
             $user->phone = $tel;
 
         $this->service->createUser($user);
-        $this->sesHelp->redirect2("Account successfully created", "/login", 10000000);
+        $this->sesHelp->redirect("Account successfully created", "/login");
     }
 
     public function index()

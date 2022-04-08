@@ -28,4 +28,9 @@ class ReviewService {
     {
         $this->repository->addReaction($id, $reaction);
     }
+
+    public function deleteOne(int $id)
+    {
+        $this->repository->deleteOne($id);
+    }
 }

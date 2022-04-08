@@ -44,6 +44,8 @@ class ReviewController
 
     public function create()
     {
+        if (!isset($_SESSION['authenticated']) && $_SESSION['authenticated'] != true) $this->sessionHelper->redirect('You need to be logged in!', '/login');
+
         $companies = $this->companyService->getAll();
 
         require __DIR__ . '/../views/review/create.php';
@@ -70,11 +72,20 @@ class ReviewController
     public function react()
     {
 
-            $serialized = array_map('htmlspecialchars', $_POST);
-            if (isset($serialized['react-btn-submit'])){
-                $this->reviewService->addReaction($_GET['id'], $serialized['reaction']);
-                $this->sessionHelper->redirect('', '/review/single?id='.$_GET['id']);
-            }
+        $serialized = array_map('htmlspecialchars', $_POST);
+        if (isset($serialized['react-btn-submit'])) {
+            $this->reviewService->addReaction($_GET['id'], $serialized['reaction']);
+            $this->sessionHelper->redirect('', '/review/single?id=' . $_GET['id']);
         }
+    }
+
+    public function delete()
+    {
+        if (!$_SESSION['authenticated'] && $_SESSION['auth_user']['type'] != 'admin') {
+            $this->sessionHelper->redirect('You need to be an admin for this action','/'); exit();
+        }
+
+        $this->reviewService->deleteOne($_GET['id']);
+    }
 
 }

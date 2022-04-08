@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require __DIR__ . '/../models/company.php';
 require __DIR__ . '/../models/review.php';
 require __DIR__ . '/../models/user.php';

@@ -66,5 +66,16 @@ class reviewrepository extends repository
         }
     }
 
+    public function deleteOne(int $id)
+    {
+        try {
+            $stmt = $this->connection->prepare("DELETE FROM reviews WHERE id = :id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
+
 
 }
