@@ -26,7 +26,7 @@ class UserRepository extends repository
             $stmt->bindParam(':email', $email);
             $stmt->execute();
 
-            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'user');
             return $stmt->fetch();
 
         } catch (PDOException $e){
@@ -57,7 +57,7 @@ class UserRepository extends repository
             $stmt->bindParam(':id', $id);
             $stmt->execute();
 
-            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'user');
             return $stmt->fetch();
 
         } catch (PDOException $e){
@@ -78,6 +78,17 @@ class UserRepository extends repository
 
             $stmt->execute();
         } catch (PDOException $e){
+            echo $e;
+        }
+    }
+
+    public function deleteOne(int $id)
+    {
+        try {
+            $stmt = $this->connection->prepare("DELETE FROM users WHERE id = :id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        } catch (PDOException $e) {
             echo $e;
         }
     }

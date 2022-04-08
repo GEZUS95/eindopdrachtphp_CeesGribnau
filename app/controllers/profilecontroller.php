@@ -91,4 +91,20 @@ class profilecontroller
             }
         }
     }
+
+    public function deleteUser()
+    {
+        if (!$_SESSION['authenticated'] && $_SESSION['auth_user']['type'] != 'admin') {
+            $this->sesHelp->redirect('You need to be an admin for this action','/'); exit();
+        }
+        $this->userService->deleteOne($_GET['id']);
+    }
+
+    public function deleteCompany()
+    {
+        if (!$_SESSION['authenticated'] && $_SESSION['auth_user']['type'] != 'admin') {
+            $this->sesHelp->redirect('You need to be an admin for this action','/'); exit();
+        }
+        $this->companyService->deleteOne($_GET['id']);
+    }
 }

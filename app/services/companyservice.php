@@ -11,17 +11,6 @@ class companyservice
         $this->repository = new companyrepository();
     }
 
-//    public function updateDescription($id, $description)
-//    {
-//        $this->repository->updateDescription($id, $description);
-//    }
-
-    public function updatePhotos($id, array $photos)
-    {
-        $sphotos = json_encode($photos);
-        $this->repository->updatePhotos($id, $sphotos);
-    }
-
     public function companyExists($email)
     {
         if ($this->repository->getOne($email) != false) {
@@ -51,5 +40,10 @@ class companyservice
 
     function updateOne(company $company){
         $this->repository->updateOne($company);
+    }
+
+    public function deleteOne(int $id)
+    {
+        $this->repository->deleteOne($id);
     }
 }

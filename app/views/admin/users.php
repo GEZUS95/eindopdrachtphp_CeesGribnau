@@ -18,7 +18,7 @@ foreach ($users as $user) {
     <p class='card-text'>$user->email</p>
     <p class='card-text'>$user->phone</p>
     <a href='/admin/changeuser?id=$user->id' class='btn btn-warning'>Change</a>
-    <a href='/review/delete?id=$user->id' class='btn btn-danger'>Delete</a>
+    <a href='/review/deleteuser?id=$user->id' class='btn btn-danger'>Delete</a>
   </div>
 </div>";
 }

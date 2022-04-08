@@ -39,4 +39,9 @@ class UserService
         return $this->repository->getAll();
     }
 
+    public function deleteOne(int $id)
+    {
+        $this->repository->deleteOne($id);
+    }
+
 }

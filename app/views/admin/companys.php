@@ -17,7 +17,7 @@ foreach ($companys as $company) {
     <p class='card-text'>$company->description</p>
     <a href='/review/create' class='btn btn-primary'>Place Review</a>
     <a href='/admin/changecompany?id=$company->id' class='btn btn-warning'>Change</a>
-    <a href='/review/delete?id=$company->id' class='btn btn-danger'>Delete</a>
+    <a href='/review/deletecompany?id=$company->id' class='btn btn-danger'>Delete</a>
   </div>
 </div>";
 }
