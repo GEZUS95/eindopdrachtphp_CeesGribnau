@@ -45,18 +45,18 @@ class CompanyRepository extends repository
         }
     }
 
-    public function updateDescription($id, $description){
-        try {
-            $stmt = $this->connection->prepare("UPDATE companys SET description=:description WHERE id=:id");
-
-            $stmt->bindParam(':description', $description);
-            $stmt->bindParam(':id', $id);
-
-            $stmt->execute();
-        } catch (PDOException $e){
-            echo $e;
-        }
-    }
+//    public function updateDescription($id, $description){
+//        try {
+//            $stmt = $this->connection->prepare("UPDATE companys SET description=:description WHERE id=:id");
+//
+//            $stmt->bindParam(':description', $description);
+//            $stmt->bindParam(':id', $id);
+//
+//            $stmt->execute();
+//        } catch (PDOException $e){
+//            echo $e;
+//        }
+//    }
 
     public function updatePhotos($id, $photos)  {
         try {

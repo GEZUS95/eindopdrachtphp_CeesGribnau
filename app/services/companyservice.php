@@ -11,10 +11,10 @@ class companyservice
         $this->repository = new companyrepository();
     }
 
-    public function updateDescription($id, $description)
-    {
-        $this->repository->updateDescription($id, $description);
-    }
+//    public function updateDescription($id, $description)
+//    {
+//        $this->repository->updateDescription($id, $description);
+//    }
 
     public function updatePhotos($id, array $photos)
     {

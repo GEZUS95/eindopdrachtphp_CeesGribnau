@@ -20,7 +20,12 @@ class ReviewService {
         $this->repository->insertOne($review);
     }
 
-    function getOne($companyId, $userId) {
-        return $this->getOne($companyId, $userId);
+    function getOne($id) {
+        return $this->repository->getOne($id);
+    }
+
+    public function addReaction(int $id, string $reaction)
+    {
+        $this->repository->addReaction($id, $reaction);
     }
 }

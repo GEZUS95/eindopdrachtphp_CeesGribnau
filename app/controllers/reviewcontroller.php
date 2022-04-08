@@ -35,7 +35,9 @@ class ReviewController
 
     public function single()
     {
-        $model = $this->reviewService->getAll();
+        $review = $this->reviewService->getOne($_GET['id']);
+        $user = $this->userService->getOneById($review->userId);
+        $company = $this->companyService->getOneById($review->companyId);
 
         require __DIR__ . '/../views/review/single.php';
     }
@@ -49,24 +51,30 @@ class ReviewController
 
     public function place()
     {
-        echo "successfully entered this pice of code <br>";
-
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $serialized = array_map('htmlspecialchars', $_POST);
-            var_dump($serialized); echo "<br>";
             if (isset($serialized['review-btn-submit'])) {
                 $review = new review();
-                    $review->companyId = $serialized['company'];
-                    $review->userId = $serialized['userid'];
-                    $review->title = $serialized['title'];
-                    $review->description = $serialized['description'];
-                    $review->rating = $serialized['rating'];
-                    $review->reaction = "";
-                var_dump($review);
+                $review->companyId = $serialized['company'];
+                $review->userId = $serialized['userid'];
+                $review->title = $serialized['title'];
+                $review->description = $serialized['description'];
+                $review->rating = $serialized['rating'];
+                $review->reaction = "";
                 $this->reviewService->insertOne($review);
                 $this->sessionHelper->redirect('', '/review');
             }
         }
     }
+
+    public function react()
+    {
+
+            $serialized = array_map('htmlspecialchars', $_POST);
+            if (isset($serialized['react-btn-submit'])){
+                $this->reviewService->addReaction($_GET['id'], $serialized['reaction']);
+                $this->sessionHelper->redirect('', '/review/single?id='.$_GET['id']);
+            }
+        }
+
 }

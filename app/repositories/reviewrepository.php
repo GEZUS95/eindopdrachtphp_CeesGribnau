@@ -2,7 +2,7 @@
 
 class reviewrepository extends repository
 {
-    function getAll()
+    public function getAll()
     {
         try {
             $stmt = $this->connection->prepare("SELECT * FROM reviews");
@@ -17,12 +17,11 @@ class reviewrepository extends repository
         }
     }
 
-    function getOne($companyId, $userId)
+    public function getOne($id)
     {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM reviews WHERE companyID = :cID AND userId = :uID LIMIT 1");
-            $stmt->bindParam(':cID', $companyId);
-            $stmt->bindParam(':uID', $userId);
+            $stmt = $this->connection->prepare("SELECT * FROM reviews WHERE id = :id LIMIT 1");
+            $stmt->bindParam(':id', $id);
             $stmt->execute();
 
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'review');
@@ -33,7 +32,7 @@ class reviewrepository extends repository
         }
     }
 
-    function insertOne(review $review)
+    public function insertOne(review $review)
     {
         try {
             $stmt = $this->connection->prepare("INSERT INTO reviews (companyId, userId, title, description, rating, reaction) VALUES (:companyId, :userId, :title, :description, :rating, :reaction)");
@@ -46,6 +45,22 @@ class reviewrepository extends repository
             $stmt->bindParam(':reaction', $review->reaction);
 
             $stmt->execute();
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
+
+    public function addReaction(int $id, string $reaction)
+    {
+        try {
+            $stmt = $this->connection->prepare("UPDATE reviews SET reaction = :react WHERE id = :id LIMIT 1");
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':react', $reaction);
+            $stmt->execute();
+
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'review');
+            return $stmt->fetch();
+
         } catch (PDOException $e) {
             echo $e;
         }
