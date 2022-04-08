@@ -2,6 +2,5 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/app/repositories/userrepository.php" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/sql/nieuw_developmentdb.sql" dialect="MariaDB" />
   </component>
 </project>

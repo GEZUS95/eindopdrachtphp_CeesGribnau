@@ -5,7 +5,6 @@ include __DIR__ . '/../header.php';
 echo "<div class='card'> ";
 echo "<h1 class='card-header'>$review->title</h1>";
 
-
 echo "<div class='card-body'> ";
 if (isset($company->logo)) {
     echo "<img  src='$company->logo'>";

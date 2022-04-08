@@ -13,14 +13,9 @@ $this->sesHelp->message();
 <p>role: <?php echo $_SESSION['auth_user']['type'] ?></p>
 
 <?php if ($_SESSION['auth_user']['type'] == 'company') {
-
    echo "<p>description: ". $_SESSION['auth_user']['description'] . "</p>";
    echo "<p>logo: ". $_SESSION['auth_user']['logo'] . "</p>";
-
-}
-
-
-    ?>
+} ?>
     <a href="/profile/change" class="btn btn-primary">Change your data</a>
 
 <?php

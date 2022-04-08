@@ -10,7 +10,6 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] == true) ech
     <script src="/reviewsloader.js"></script>
     <div id="content"></div>
 
-
 <?php
 
 include __DIR__ . '/../footer.php';

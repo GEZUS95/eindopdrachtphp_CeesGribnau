@@ -27,3 +27,14 @@ Or run:
 ```bash
 docker-compose down
 ```
+
+The user's that are preconfigured are:
+
+* " mark@inholland.nl " with password " mark " <- this is an user
+* " admin@example.com " with password " admin " <- this is an admin
+* " test@email.com " with password " test " <- this is also an user
+* " company@email.com " with password " test " <- this is an company
+
+The link to my Github Repo: https://github.com/GEZUS95/eindopdrachtphp_CeesGribnau
+
+

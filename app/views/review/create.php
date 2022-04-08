@@ -40,7 +40,6 @@ include __DIR__ . '/../header.php';
             <input type="radio" id="4" name="rating" value="4">
             <input type="radio" id="5" name="rating" value="5">
 
-
         </div>
         <div class="form-group">
             <button type="submit" name="review-btn-submit" class="btn btn-primary btn-lg">Place Review</button>
