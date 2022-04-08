@@ -1,5 +1,7 @@
 function loadReviews() {
-    fetch('http://localhost/api/reviews')
+    let getUrl = window.location;
+    let baseUrl = getUrl .protocol + "//" + getUrl.host;
+    fetch(baseUrl+'/api/reviews')
         .then(result => result.json())
         .then(reviews => {
             reviews.forEach(review => {
@@ -8,19 +10,6 @@ function loadReviews() {
                 let mainDiv = document.getElementById("content");
 
                 //Create child elements
-
-                // <div class='card' style='width: 28rem'>
-                //     <div class='card-body'>
-                //         <h2 class='card-title'>$article->title</h2>
-                //         <p class='card-text'><i>$article->description</i>
-                //             <p>
-                //                 <p>$article->rating Stars
-                //                     <p>
-                //                         <a class='btn btn-primary' href='/review/single?id=$article->id'>Read more</a>
-                //                         <p class='card-footer'><i>$user->name</i> wrote to <i>$company->name</i></p>
-                //     </div>
-                // </div>
-
                 let linkreadmore = document.createElement("a");
                 linkreadmore.href = '/review/single?id=' + review.id;
                 linkreadmore.className = "btn btn-primary";
@@ -51,10 +40,8 @@ function loadReviews() {
                 cardbody.appendChild(linkreadmore);
 
                 mainDiv.appendChild(card);
-
             })
         })
-
 }
 
 loadReviews();
