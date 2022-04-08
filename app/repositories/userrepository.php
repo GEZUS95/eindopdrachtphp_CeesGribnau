@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/../repositories/repository.php';
+require_once __DIR__ . '/../models/user.php';
+
 class UserRepository extends repository
 {
     function getAll()
