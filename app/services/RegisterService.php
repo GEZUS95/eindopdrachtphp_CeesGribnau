@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/../services/userservice.php';
+require_once __DIR__ . '/../services/companyservice.php';
+
 class RegisterService {
 
     private userService $userService;

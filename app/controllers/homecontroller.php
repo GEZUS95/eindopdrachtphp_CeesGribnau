@@ -3,8 +3,6 @@
 session_start();
 
 require __DIR__ . '/../helpers/session_helper.php';
-require __DIR__ . '/../repositories/repository.php';
-require __DIR__ . '/../models/company.php';
 require __DIR__ . '/../services/companyservice.php';
 
 class homecontroller
