@@ -2,6 +2,8 @@
 
 session_start();
 
+require __DIR__ . '/../repositories/repository.php';
+require __DIR__ . '/../models/review.php';
 require __DIR__ . '/../services/reviewservice.php';
 
 class ReviewController
