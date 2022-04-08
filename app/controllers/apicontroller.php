@@ -31,8 +31,9 @@ class apicontroller
         $array[] = $row;
         }
         $json = json_encode($array);
-        print($json);
-        return $json;
+
+        header('Content-Type: application/json; charset=utf-8');
+        echo $json;
     }
 
     public function companys()
@@ -42,8 +43,9 @@ class apicontroller
             $array[] = $row;
         }
         $json = json_encode($array);
-        print($json);
-        return $json;
+        header('Content-Type: application/json; charset=utf-8');
+        echo $json;
+
     }
     public function users()
     {
@@ -52,7 +54,8 @@ class apicontroller
             $array[] = $row;
         }
         $json = json_encode($array);
-        print($json);
-        return $json;
+
+        header('Content-Type: application/json; charset=utf-8');
+        echo($json);
     }
 }
